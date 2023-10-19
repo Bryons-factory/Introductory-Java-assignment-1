@@ -1,0 +1,33 @@
+package atmCode;
+
+public class ATM {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//Initialize Variables
+		
+		
+		/*
+		 Read pin
+		While pin is good do
+			Set doneProcessingRequest to false
+			While not doneProcessingRequest do
+				set okayToProcessRequest to true
+				Read withdrawAmount
+				If withdrawAmount is bad then
+					Output a message
+					set okayToProcessRequest to false
+			Else
+				If surcharge is supposed to be imposed then
+				Write a message
+				Read surchargeResponse
+				If surchargeResponse is not ('Y' or 'y')
+					Set okayToProcessRequest to false
+			If okayToProcessRequest then
+				Do all the steps to process the request
+				Set doneProcessingRequest to true
+			Read pin
+		 */
+	}
+
+}
