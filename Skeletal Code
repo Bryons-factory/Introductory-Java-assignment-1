@@ -1,33 +1,60 @@
-package atmCode;
+package Atm;
+import java.util.Scanner;
 
-public class ATM {
+public class AtmCode {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		//Initialize Variables
+
+		int Pin;
+		int withdrawAmount;
 		
+		Scanner input = new Scanner(System.in);
 		
-		/*
-		 Read pin
-		While pin is good do
-			Set doneProcessingRequest to false
-			While not doneProcessingRequest do
-				set okayToProcessRequest to true
-				Read withdrawAmount
-				If withdrawAmount is bad then
-					Output a message
-					set okayToProcessRequest to false
-			Else
-				If surcharge is supposed to be imposed then
-				Write a message
-				Read surchargeResponse
-				If surchargeResponse is not ('Y' or 'y')
-					Set okayToProcessRequest to false
-			If okayToProcessRequest then
-				Do all the steps to process the request
-				Set doneProcessingRequest to true
-			Read pin
-		 */
+		System.out.print("Enter your PIN please: ");
+		Pin = input.nextInt();
+		while(Pin > 0) {
+			if(Pin%2 == 1 ) {// Checks if odd
+				System.out.println("Enter the amount to be withdrawn:");
+				withdrawAmount = input.nextInt();
+				if(withdrawAmount >= 1 || withdrawAmount <= 500 ) {
+					
+					}
+				}
+			else if(Pin%2 == 0) {// Checks if even
+				System.out.println("Enter the amount to be withdrawn:");
+				withdrawAmount = input.nextInt();
+				if(withdrawAmount >= 1 || withdrawAmount <= 500 ) {
+					
+					}
+				}
+			System.out.print("Enter your PIN please: ");
+			Pin = input.nextInt();
+		}
+				/*
+				 Read pin
+				While pin is good do
+					Set doneProcessingRequest to false
+					While not doneProcessingRequest do
+						set okayToProcessRequest to true
+						Read withdrawAmount
+						If withdrawAmount is bad then
+							Output a message
+							set okayToProcessRequest to false
+					Else
+						If surcharge is supposed to be imposed then
+						Write a message
+						Read surchargeResponse
+						If surchargeResponse is not ('Y' or 'y')
+							Set okayToProcessRequest to false
+					If okayToProcessRequest then
+						Do all the steps to process the request
+						Set doneProcessingRequest to true
+					Read pin
+				 */
+			
+
+		
+
 	}
 
 }
