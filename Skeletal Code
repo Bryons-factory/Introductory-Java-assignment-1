@@ -6,54 +6,115 @@ public class AtmCode {
 	public static void main(String[] args) {
 
 		int Pin;
-		int withdrawAmount;
-		
+		int withdrawAmount, tens, fives, ones;
+		boolean flag = false;
+		boolean done = false;
+		char option;
 		Scanner input = new Scanner(System.in);
 		
 		System.out.print("Enter your PIN please: ");
 		Pin = input.nextInt();
 		while(Pin > 0) {
+			flag = false;
+			
 			if(Pin%2 == 1 ) {// Checks if odd
-				System.out.println("Enter the amount to be withdrawn:");
+				System.out.print("\nEnter the amount to be withdrawn: ");
 				withdrawAmount = input.nextInt();
-				if(withdrawAmount >= 1 || withdrawAmount <= 500 ) {
-					
+				while(withdrawAmount > -100) {
+					if(withdrawAmount >= 1 && withdrawAmount <= 500 ) {
+						System.out.println("\nYou requested $" + withdrawAmount + ".");
+						System.out.println("You are receiving the following bills:");
+						tens = withdrawAmount/10;
+						fives = (withdrawAmount - (tens*10))/5;
+						ones = withdrawAmount - (tens*10) - (fives*5);
+						System.out.println("\tNumber of $10 bills: " + tens);
+						System.out.println("\tNumber of $5 bills: " + fives);
+						System.out.println("\tNumber of $1 bills: " + ones);
+						break;
+					}
+					else {
+						System.out.println("\nInvalid amount: "+ withdrawAmount + ".");
+						System.out.print("\nEnter the amount to be withdrawn: ");
+						withdrawAmount = input.nextInt();
 					}
 				}
+			}
 			else if(Pin%2 == 0) {// Checks if even
-				System.out.println("Enter the amount to be withdrawn:");
+				if(done == true) {
+					break;
+				}
+				System.out.print("\nEnter the amount to be withdrawn: ");
 				withdrawAmount = input.nextInt();
-				if(withdrawAmount >= 1 || withdrawAmount <= 500 ) {
-					
+				while(flag == false ) {
+					if(withdrawAmount >= 1 && withdrawAmount <= 500 ) {
+						if(withdrawAmount % 5 != 0) {
+							System.out.printf("\nYou are a type 2 customer, but the amount you requested was $%s."
+							+ "\nYou will be charged $1 for changing your default setting. \nDo you want to be charged $1? (Y/N) ", withdrawAmount);
+							option = input.next().charAt(0);
+							while( flag != true) {
+								if (option != 'Y' && option != 'y') {
+									System.out.print("\nEnter the amount to be withdrawn: ");
+									withdrawAmount = input.nextInt();
+									if(withdrawAmount >= 1 && withdrawAmount <= 500 ) {
+										if(withdrawAmount % 5 != 0) {
+											System.out.printf("\nYou are a type 2 customer, but the amount you requested was $%s."
+											+ "\nYou will be charged $1 for changing your default setting. \nDo you want to be charged $1? (Y/N) ", withdrawAmount);
+											option = input.next().charAt(0);
+										}
+										else {
+											System.out.println("\nYou requested $" + withdrawAmount + ".");
+											System.out.println("You are receiving the following bills:");
+											tens = withdrawAmount/10;
+											fives = (withdrawAmount - (tens*10))/5;
+											ones = withdrawAmount - (tens*10) - (fives*5);
+											System.out.println("\tNumber of $10 bills: " + tens);
+											System.out.println("\tNumber of $5 bills: " + fives);
+											System.out.println("\tNumber of $1 bills: " + ones);
+											flag = true;
+											done = true;
+											break;
+										}
+									}	
+								}
+								else if (option != 'N' && option != 'n') {
+									System.out.println("\nYou requested $" + withdrawAmount  + ".");
+									System.out.println("You have been charged $1");
+									System.out.println("You are receiving the following bills:");
+									flag = true;
+									withdrawAmount--;
+									tens = withdrawAmount/10;
+									fives = (withdrawAmount - (tens*10))/5;
+									ones = withdrawAmount - (tens*10) - (fives*5);
+									System.out.println("\tNumber of $10 bills: " + tens);
+									System.out.println("\tNumber of $5 bills: " + fives);
+									System.out.println("\tNumber of $1 bills: " + ones);
+								}
+							}	
+						}
+						else {
+							System.out.println("\nYou requested $" + withdrawAmount + ".");
+							System.out.println("You are receiving the following bills:");
+							tens = withdrawAmount/10;
+							fives = (withdrawAmount - (tens*10))/5;
+							ones = withdrawAmount - (tens*10) - (fives*5);
+							System.out.println("\tNumber of $10 bills: " + tens);
+							System.out.println("\tNumber of $5 bills: " + fives);
+							System.out.println("\tNumber of $1 bills: " + ones);
+							flag = true;
+							break;
+						}
+					}
+					else {
+						System.out.println("\nInvalid amount: "+ withdrawAmount + ".");
+						System.out.print("\nEnter the amount to be withdrawn: ");
+						withdrawAmount = input.nextInt();
 					}
 				}
-			System.out.print("Enter your PIN please: ");
+			}
+			System.out.print("\nEnter your PIN please: ");
 			Pin = input.nextInt();
 		}
-				/*
-				 Read pin
-				While pin is good do
-					Set doneProcessingRequest to false
-					While not doneProcessingRequest do
-						set okayToProcessRequest to true
-						Read withdrawAmount
-						If withdrawAmount is bad then
-							Output a message
-							set okayToProcessRequest to false
-					Else
-						If surcharge is supposed to be imposed then
-						Write a message
-						Read surchargeResponse
-						If surchargeResponse is not ('Y' or 'y')
-							Set okayToProcessRequest to false
-					If okayToProcessRequest then
-						Do all the steps to process the request
-						Set doneProcessingRequest to true
-					Read pin
-				 */
-			
-
-		
+		System.out.println("\nThe program will terminate!");
 
 	}
 
